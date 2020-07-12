@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet"> 
+    <title>Grade Calculator</title>
+    <style>
+       body{
+           background:#26c4ff;
+       } 
+       .grade-container{
+           transform: translate(-50%,-50%);
+           top: 50%;
+           left: 50%;
+           background:  #464646;
+           width: 500px;
+           border-radius: 20px;
+           position:absolute;
+           display: flex;
+           height: 500px;
+       }
+       .header{
+           width: 250px;
+           height: 500px;
+           border-top-left-radius: 20px;
+           border-bottom-left-radius: 20px;
+       }
+       .content{  
+           width: 250px;
+           height: 500px;
+           border-top-right-radius: 20px;
+           border-bottom-right-radius: 20px;
+       }
+       .header-content{
+           padding: 20px;
+           border-left: 2px solid grey;
+           position: relative;
+           top: 50%;
+           left: 150px !important;
+           transform: translate(-50%,-50%);
+       }
+       .header-content h4{
+           color: white;
+           font-weight: bolder;
+           font-family: 'Dancing Script', cursive;
+       }
+       .subj{
+           padding:10px;
+           background:transparent;
+           border:none;
+           border-bottom: 1px solid #a7a7a7;
+           color:#c8c8c8;
+       }
+       .content_container{
+           margin-top: 70px;
+       }
+       .percentatge_text{
+           color: white;
+           padding:30px;
+           cursor: pointer;
+       }
+       .totalvalue, .percentage,.grades{
+           color:white;
+       }
+    </style>
+</head>
+<body>
+    <div class="grade-container">
+       <div class="header">
+        <div class="header-content">
+                <h4>Students grade calculator</h4>
+        </div>
+       </div>
+       <div class="content">
+            <div class="content_container text-center">
+                <input type="text" min="0" max="100" id="subj1" class="subj" placeholder="Subj1"/>
+                <input type="text" min="0" max="100" id="subj2" class="subj" placeholder="Subj2"/>
+                <input type="text" min="0" max="100" id="subj3" class="subj" placeholder="Subj3"/>
+                <input type="text" min="0" max="100" id="subj4" class="subj" placeholder="Subj4"/>
+                <p class="percentatge_text" onclick="perCal()">Show Percentage</p>         
+            </div>
+            <div id="result">
+
+            </div>
+       </div>
+    </div>
+    <script>
+        const perCal = () => {
+            let subj1 = document.getElementById('subj1').value;
+            let subj2 = document.getElementById('subj2').value;
+            let subj3 = document.getElementById('subj3').value;
+            let subj4 = document.getElementById('subj4').value;
+            let total = parseInt(subj1) + parseInt(subj2) + parseInt(subj3) + parseInt(subj4);
+            let percentage = (total * 100)/400;
+            let grades="";
+            if(percentage <= 99 && percentage >= 74){
+                 grades = "A";
+            }
+            else if(percentage <=74 && percentage >= 55){
+                grades = "B";
+            }
+            else if(percentage <=54 && percentage >= 35){
+                grades = "C";
+            }
+            else{
+                grades = "D";
+            }
+            document.getElementById('result').innerHTML = `
+            <p class="totalvalue"> Your total is ${total}</p>
+            <p class="percentage"> Percentage is ${percentage}%</p>
+            <p class="grades">Your grade is ${grades}</p>
+            `;
+
+        }
+    </script>
+</body>
+</html>
